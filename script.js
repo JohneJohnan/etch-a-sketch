@@ -1,25 +1,39 @@
 const Btn = document.querySelector("button");
-let gridSide = 10;
+let gridSide = 30;
+makeGrid(gridSide);
+
 Btn.onclick = () => {
     do {
         gridSide = parseInt(prompt(
             "Enter new number of rows and colomns." +
-            'it has to be between 1 & 20', 10));
+            '\nit has to be between 1 & 30', 30));
     }
-    while (!Number.isInteger(gridSide) || gridSide > 20 || gridSide < 1);
+    while (!Number.isInteger(gridSide) || gridSide > 30 || gridSide < 1);
+    makeGrid(gridSide);
 }
-const main = document.body.querySelector(".main");
 
-for (let i = 0; i < 10; i++) {
-    const row = document.createElement("div");
-    row.classList.add("row");
-    main.appendChild(row);
-    for (let j = 0; j < 10; j++) {
-        const column = document.createElement("div");
-        column.style.backgroundColor = "rgb(255,255,255)";
-        column.classList.add("column");
-        row.appendChild(column);
-        column.onmouseover = e => makeDarker(e);
+function makeGrid(side) {
+    const main = document.body.querySelector(".main");
+    const oldGrid = main.firstChild;
+    const newGrid = document.createElement("div");
+    newGrid.classList.add("grid");
+
+    if (oldGrid)
+        main.replaceChild(newGrid, oldGrid);
+    else
+        main.appendChild(newGrid);
+
+    for (let i = 0; i < side; i++) {
+        const row = document.createElement("div");
+        row.classList.add("row");
+        newGrid.appendChild(row);
+        for (let j = 0; j < side; j++) {
+            const column = document.createElement("div");
+            column.style.backgroundColor = "rgb(255,255,255)";
+            column.classList.add("column");
+            row.appendChild(column);
+            column.onmouseover = e => makeDarker(e);
+        }
     }
 }
 
@@ -37,6 +51,3 @@ function rgbStrToArr(string) {
             return rgbArray;
         }, []);
 }
-
-
-console.log('done');
