@@ -8,6 +8,8 @@ body, button {
 body {
     display:flex;
     flex-direction: column;
+    justify-content: space-between;
+    height:100vh;
 }
 
 .header {
@@ -38,8 +40,18 @@ button {
 }
 
 .main {
-    font-size: xx-large;
     flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 1/1;
+}
+
+.main div {
+    flex: 1 1 auto;
+}
+
+.row {
+    display: flex;
 }
 
 .footer {
